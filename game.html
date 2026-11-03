@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>لعبتنا الصغيرة ♡</title>
+
+<style>
+:root {
+  --gold: #e8d2a0;
+  --cream: #fff8ed;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+}
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE");
+  background-size: cover;
+  background-position: center;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .83);
+}
+main {
+  width: min(92%, 650px);
+  margin: auto;
+  padding: 25px 0;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.logo { color: var(--gold); font-weight: bold; }
+.back { color: var(--gold); text-decoration: none; }
+
+.card {
+  padding: clamp(22px, 5vw, 40px);
+  border: 1px solid #e8d2a055;
+  border-radius: 26px;
+  background: #111d30e8;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px #0005;
+}
+.center { text-align: center; }
+.symbol { font-size: 42px; }
+h1 { font-size: clamp(27px, 6vw, 39px); }
+p { color: #e2dcd2; line-height: 2; }
+
+.progress {
+  height: 6px;
+  margin: 22px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff18;
+}
+#bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #c3a568, #f5e7c5);
+  transition: width .3s;
+}
+#question {
+  font-size: 21px;
+  line-height: 1.9;
+  margin: 20px 0;
+}
+.answers { display: grid; gap: 12px; }
+.answer {
+  width: 100%;
+  padding: 15px;
+  color: var(--cream);
+  text-align: right;
+  font: inherit;
+  background: #ffffff08;
+  border: 1px solid #ffffff28;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: .2s;
+}
+.answer:hover:not(:disabled) {
+  border-color: var(--gold);
+  background: #e8d2a018;
+}
+.answer:disabled { cursor: default; }
+.answer.wrong {
+  border-color: #ff8e9b;
+  background: #ff8e9b16;
+}
+.answer.correct {
+  border-color: #a5d6a7;
+  background: #a5d6a716;
+}
+#feedback {
+  min-height: 35px;
+  margin-top: 17px;
+  text-align: center;
+  line-height: 1.9;
+  color: var(--gold);
+}
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  color: #172033;
+  background: linear-gradient(135deg, #f5e7c5, #d4b77b);
+  border: 0;
+  border-radius: 13px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+.hidden { display: none !important; }
+
+#letters, #collected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  direction: rtl;
+  margin: 20px 0;
+}
+.letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 44px;
+  border: 1px solid #e8d2a080;
+  border-radius: 9px;
+  color: var(--gold);
+  font-size: 21px;
+}
+.word-space { width: 13px; }
+.result-text {
+  color: var(--gold);
+  font-size: clamp(23px, 5vw, 31px);
+  line-height: 2.2;
+}
+footer {
+  padding: 22px 0;
+  color: #e2dcd2;
+  text-align: center;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main>
+  <div class="top">
+    <span class="logo">♡ SARSORTY PROJECT</span>
+    <a class="back" href="index.html">← الرئيسية</a>
+  </div>
+
+  <section class="card center" id="start">
+    <div class="symbol">🎮</div>
+    <h1>ركزي معايا يا روحي 🤍</h1>
+    <p>
+      جاوبي على الأسئلة، وكل إجابة صح هتكشف حرف من رسالة
+      مستخبية ليكي. الحروف بالترتيب هتكوّن رسالة مخصوصة ليكي.
+      ولو غلطتي، جربي تاني براحتك.
+    </p>
+    <button class="btn" onclick="begin()">يلا نبدأ ✨</button>
+  </section>
+
+  <section class="card hidden" id="game">
+    <div class="center">
+      <div class="symbol">🌷</div>
+      <p id="count"></p>
+      <div id="collected" aria-label="الحروف التي تم جمعها"></div>
+    </div>
+
+    <div class="progress"><div id="bar"></div></div>
+    <div id="question"></div>
+    <div class="answers" id="answers"></div>
+    <div id="feedback" role="status" aria-live="polite"></div>
+  </section>
+
+  <section class="card center hidden" id="result">
+    <div class="symbol">💌</div>
+    <h1>جمعنا الرسالة كلها!</h1>
+    <p>كل إجابة صح قرّبتنا من الكلام ده:</p>
+    <div id="letters"></div>
+    <div class="result-text">انا بحبك ومش عايز غيرك من الدنيا</div>
+    <p>بحبك اويي ي ساره وم عايز غيرك من الدينا دي كلها بجد، ومفيش حد في الدنيا مكانه زي مكانك عندي. 🤍</p>
+    <a class="btn" href="index.html">الرجوع للرئيسية 🏠</a>
+  </section>
+
+  <footer>انت عمري كله 🫂😍</footer>
+</main>
+
+<script>
+const questions = [
+  // انا
+  {q:"إيه الحيوان المعروف بملك الغابة؟",a:["أسد","فيل","حصان"],c:0},
+  {q:"إيه الحشرة اللي بتنتج العسل؟",a:["فراشة","نحلة","نملة"],c:1},
+  {q:"إيه الحيوان اللي بيحب الجزر؟",a:["أرنب","قطة","كلب"],c:0},
+
+  // بحبك
+  {q:"إيه الطائر اللي بيعيش في المية وبيسبح؟",a:["نسر","بطة","عصفور"],c:1},
+  {q:"إيه الحيوان اللي بنركبه وبيبدأ اسمه بحرف ح؟",a:["حصان","جمل","حمار"],c:0},
+  {q:"إيه الفاكهة الكبيرة اللي لونها أخضر من بره وأحمر من جوه؟",a:["تفاح","برتقال","بطيخ"],c:2},
+  {q:"إيه الشيء اللي بنقرأ فيه القصص؟",a:["كراسة","كتاب","مجلة"],c:1},
+
+  // ومش
+  {q:"إيه الزهرة اللي بنهديها لحد بنحبه؟",a:["ورد","ياسمين","قرنفل"],c:0},
+  {q:"إيه الفاكهة الصفراء المشهورة؟",a:["تفاح","موز","عنب"],c:1},
+  {q:"إيه النجم اللي بينوّر النهار؟",a:["قمر","مريخ","شمس"],c:2},
+
+  // عايز
+  {q:"إيه الفاكهة اللي اسمها بيبدأ بحرف ع؟",a:["عنب","تفاح","موز"],c:0},
+  {q:"إيه الحاجة اللي بناكلها وبتبدأ بحرف ا؟",a:["ارنب","قلم","جوز اختك"],c:0},
+  {q:"إيه الزهرة العطرية اللي اسمها بيبدأ بحرف ي؟",a:["ورد","ياسمين","قرنفل"],c:1},
+  {q:"إيه الفاكهة اللي بنعمل منها زيت واسمها بيبدأ بحرف ز؟",a:["خوخ","زيتون","مشمش"],c:1},
+
+  // غيرك
+  {q:"إيه الحيوان اللي بيعيش في الغابة وبيبدأ اسمه بحرف غ؟",a:["غزال","نمر","فيل"],c:0},
+  {q:"إيه الحجر الكريم اللي اسمه بيبدأ بحرف ي؟",a:["زمرد","ياقوت","لؤلؤ"],c:1},
+  {q:"إيه الفاكهة اللي لونها أحمر واسمها بيبدأ بحرف ر؟",a:["موز","رمان","عنب"],c:1},
+  {q:"إيه الحيوان اللي بيحرس البيت وبيبدأ اسمه بحرف ك؟",a:["قطة","فيل","كلب"],c:2},
+
+  // من
+  {q:"إيه الحاجة اللي بنستخدمها لفتح الباب؟",a:["مفتاح","كتاب","كرسي"],c:0},
+  {q:"إيه الشيء اللي بيجري بين ضفتين وبيبدأ بحرف ن؟",a:["بحر","نهر","بحيرة"],c:1},
+
+  // الدنيا
+  {q:"إيه العضو اللي بنسمع بيه وبيبدأ بحرف ا؟",a:["أذن","عين","أنف"],c:0},
+  {q:"إيه الفاكهة الحمضية اللي اسمها بيبدأ بحرف ل؟",a:["تفاح","موز","ليمون"],c:2},
+  {q:"إيه الحيوان اللي بيعيش في الغابة وبيبدأ اسمه بحرف د؟",a:["دب","نمر","فيل"],c:0},
+  {q:"إيه اللي بنشوفه في السما بالليل وبيبدأ بحرف ن؟",a:["قمر","نجوم","شمس"],c:1},
+  {q:"إيه الحجر الكريم اللي اسمه بيبدأ بحرف ي؟",a:["زمرد","لؤلؤ","ياقوت"],c:2},
+  {q:"إيه اللي بيبقي موجود ف الماء؟",a:["اسماك","حمامة","عصافير"],c:0}
+];
+
+const phrase = "انا بحبك ومش عايز غيرك من الدنيا";
+const targetLetters = phrase.replaceAll(" ", "").split("");
+let index = 0;
+const collectedLetters = [];
+
+function normalizeLetter(letter) {
+  return letter.replace(/[أإآ]/g, "ا");
+}
+
+function getFirstLetter(answer) {
+  return normalizeLetter(answer.trim().charAt(0));
+}
+
+function begin() {
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion() {
+  const item = questions[index];
+
+  document.getElementById("count").textContent =
+    `السؤال ${index + 1} من ${questions.length}`;
+
+  document.getElementById("bar").style.width =
+    `${index / questions.length * 100}%`;
+
+  document.getElementById("question").textContent = item.q;
+
+  const area = document.getElementById("answers");
+  area.innerHTML = "";
+  document.getElementById("feedback").textContent = "";
+
+  item.a.forEach((answer, i) => {
+    const button = document.createElement("button");
+    button.className = "answer";
+    button.textContent = answer;
+    button.onclick = () => choose(i, button);
+    area.appendChild(button);
+  });
+}
+
+function renderCollectedLetters() {
+  const area = document.getElementById("collected");
+  area.innerHTML = "";
+
+  collectedLetters.forEach((letter, i) => {
+    const span = document.createElement("span");
+    span.className = "letter";
+    span.textContent = letter;
+    area.appendChild(span);
+
+    // المسافات بين كلمات الرسالة
+    if ([2, 6, 9, 13, 17, 19].includes(i)) {
+      const spacer = document.createElement("span");
+      spacer.className = "word-space";
+      area.appendChild(spacer);
+    }
+  });
+}
+
+function choose(choice, button) {
+  const item = questions[index];
+  const feedback = document.getElementById("feedback");
+
+  if (choice !== item.c) {
+    button.classList.add("wrong");
+    feedback.textContent = "ركزي تاني يا عمريي 🤍 جربي إجابة تانية!";
+    return;
+  }
+
+  const correctAnswer = item.a[item.c];
+  const revealedLetter = getFirstLetter(correctAnswer);
+  const expectedLetter = targetLetters[index];
+
+  if (revealedLetter !== expectedLetter) {
+    feedback.textContent = "فيه خطأ في ترتيب الحروف، راجعي السؤال.";
+    return;
+  }
+
+  document.querySelectorAll(".answer").forEach(b => b.disabled = true);
+  button.classList.add("correct");
+
+  collectedLetters.push(revealedLetter);
+  renderCollectedLetters();
+
+  feedback.textContent = `برافو عليكي! كشفتي حرف «${revealedLetter}» ✨`;
+  document.getElementById("bar").style.width =
+    `${(index + 1) / questions.length * 100}%`;
+
+  const next = document.createElement("button");
+  next.className = "btn";
+  next.style.display = "block";
+  next.style.margin = "18px auto 0";
+  next.textContent =
+    index === questions.length - 1 ? "شوفي الرسالة 💌" : "السؤال اللي بعده ←";
+
+  next.onclick = () => {
+    index++;
+    if (index < questions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
+  };
+
+  feedback.appendChild(document.createElement("br"));
+  feedback.appendChild(next);
+}
+
+function showResult() {
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+
+  const letters = document.getElementById("letters");
+  letters.innerHTML = "";
+
+  phrase.split("").forEach(char => {
+    if (char === " ") {
+      const spacer = document.createElement("span");
+      spacer.className = "word-space";
+      letters.appendChild(spacer);
+    } else {
+      const span = document.createElement("span");
+      span.className = "letter";
+      span.textContent = char;
+      letters.appendChild(span);
+    }
+  });
+
+  try {
+    sessionStorage.setItem("nontyGameMessage", phrase);
+  } catch (e) {}
+}
+</script>
+</body>
+</html>

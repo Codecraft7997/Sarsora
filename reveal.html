@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>رسالة لنونتي ♡</title>
+
+<style>
+:root {
+  --gold: #e8d2a0;
+  --cream: #fff8ed;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+}
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE");
+  background-size: cover;
+  background-position: center;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .8);
+}
+main {
+  width: min(92%, 700px);
+  margin: auto;
+  padding: 24px 0;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.logo { color: var(--gold); font-weight: bold; }
+.back {
+  color: var(--gold);
+  text-decoration: none;
+}
+.card {
+  margin-top: 9vh;
+  padding: clamp(25px, 6vw, 55px);
+  text-align: center;
+  border: 1px solid #e8d2a055;
+  border-radius: 28px;
+  background: #111d30df;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 25px 75px #0005;
+  animation: appear .8s ease both;
+}
+.envelope {
+  font-size: 65px;
+  margin-bottom: 12px;
+}
+.eyebrow {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+h1 {
+  font-size: clamp(29px, 6vw, 43px);
+  line-height: 1.6;
+  margin: 16px 0;
+}
+p {
+  color: #e5dfd5;
+  font-size: 16px;
+  line-height: 2.2;
+}
+.message {
+  margin: 28px 0;
+  padding: 25px 18px;
+  border: 1px solid #e8d2a055;
+  border-radius: 20px;
+  background: #e8d2a00a;
+  color: var(--gold);
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 2.1;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #f5e7c5, #d4b77b);
+  color: #172033;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 7px;
+}
+.secondary {
+  color: var(--gold);
+  border: 1px solid #e8d2a080;
+  background: transparent;
+}
+footer {
+  text-align: center;
+  padding: 25px 0;
+  color: #e5dfd5;
+  font-size: 13px;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main>
+  <div class="top">
+    <span class="logo">♡ NONTY PROJECT</span>
+    <a class="back" href="pages.html">← رجوع</a>
+  </div>
+
+  <section class="card">
+    <div class="envelope">💌</div>
+    <div class="eyebrow">A MESSAGE FROM MY HEART</div>
+
+    <h1>عندي كلام عايز أوصلهولك يا نونتي</h1>
+
+    <p>
+      لو وصلتي لحد هنا، فدي رسالتي ليكي.
+      مش علشان لازم تسامحيني، ولا علشان عايزك تنسي زعلك،
+      لكن علشان مهم عندي تعرفي اللي جوايا.
+    </p>
+
+    <div class="message">
+      انا اسف يا عمري<br>
+      حقك عليا انا<br>
+      يا نور عيني 🤍
+    </div>
+
+    <p>
+      أنا آسف لو كنت سبب في زعلك.
+      مش هطلب منك تتخطي اللي حصل بسرعة،
+      ومش هقلل من أي حاجة وجعتك.
+      مشاعرك مهمة، وزعلك يستحق إني أسمعه وأفهمه.
+    </p>
+
+    <p>
+      أتمنى أقدر أصلّح اللي ضايقك بأفعالي قبل كلامي،
+      وأديكي المساحة والوقت اللي محتاجاهم.
+      إنتِ غالية عندي، وده شيء عايز أثبته بتصرفاتي. 🤍
+    </p>
+
+    <a class="btn" href="gift.html">افتحي المفاجأة 🎁</a>
+    <a class="btn secondary" href="pages.html">رجوع للقائمة</a>
+  </section>
+
+  <footer>خدي وقتك يا نونتي ♡</footer>
+</main>
+</body>
+</html>

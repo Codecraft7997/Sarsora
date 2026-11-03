@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>الصلح خير ♡</title>
+
+<style>
+:root {
+  --gold: #e8d2a0;
+  --cream: #fff8ed;
+  --muted: #d9d1c5;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+}
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE") center/cover no-repeat;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .86);
+}
+main {
+  width: min(92%, 650px);
+  margin: auto;
+  padding: 25px 0 40px;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+.logo { color: var(--gold); font-weight: bold; }
+.back { color: var(--gold); text-decoration: none; }
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+header .heart { font-size: 42px; }
+h1 {
+  color: var(--gold);
+  font-size: clamp(27px, 6vw, 40px);
+  margin: 12px 0;
+}
+header p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.reconcile-card {
+  width: 100%;
+  min-height: 280px;
+  padding: 30px 20px;
+  border: 1px solid #e8d2a055;
+  border-radius: 28px;
+  background: #111d30e8;
+  box-shadow: 0 15px 40px #0003;
+  color: var(--cream);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.reconcile-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  background: #18263be8;
+}
+.lock {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+.card-hint {
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1.9;
+}
+.card-small {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.message {
+  display: none;
+  margin-top: 22px;
+  padding: 28px 22px;
+  border: 1px solid #e8d2a080;
+  border-radius: 25px;
+  background: #111d30e8;
+  text-align: center;
+  animation: appear .4s ease;
+}
+.message.show { display: block; }
+.message .emoji { font-size: 42px; }
+.message h2 {
+  color: var(--gold);
+  font-size: 25px;
+  margin: 15px 0;
+}
+.message p {
+  font-size: 18px;
+  line-height: 2.1;
+  margin: 0;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding-top: 30px;
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main>
+  <div class="top">
+    <span class="logo">♡ SOSO PROJECT</span>
+    <a class="back" href="index.html">← الرئيسية</a>
+  </div>
+
+  <header>
+    <div class="heart">🕊️</div>
+    <h1>الصلح خير</h1>
+    <p>فيه كلام صغير من قلبي… افتحي الكارت لما تكوني مستعدة ♡</p>
+  </header>
+
+  <button class="reconcile-card" id="reconcileCard" type="button" onclick="revealMessage()">
+    <div class="lock" id="lock">🔒</div>
+    <div class="card-hint" id="cardHint">اضغطي هنا عشان تفتحي الكارت</div>
+    <div class="card-small" id="cardSmall">رسالة ليكي من قلبي ♡</div>
+  </button>
+
+  <section class="message" id="message">
+    <div class="emoji">🤍</div>
+    <h2>الصلح خير ي اوزعتي</h2>
+    <p>
+      عارف إن الزعل مش بيروح بكلمة ولا كتب كلام حتي بس اعمل ايه بس لو مؤاتي كنت بوستكك الوقتي يلا خير.<br>
+      أنا آسف على أي حاجة ضايقتك مني، وحقك عليّا.<br>
+      إنتِ غالية عندي، ووالله والله العظيم مقصد.<br>
+      حقك عليا ي نور عيني. ♡
+    </p>
+  </section>
+
+  <footer>ربنا يديم بينا الود والمحبة ♡</footer>
+</main>
+
+<script>
+function revealMessage() {
+  document.getElementById("message").classList.add("show");
+  document.getElementById("lock").textContent = "🤍";
+  document.getElementById("cardHint").textContent = "الكارت اتفتح ♡";
+  document.getElementById("cardSmall").textContent = "رسالة من القلب";
+  document.getElementById("reconcileCard").disabled = true;
+}
+</script>
+</body>
+</html>

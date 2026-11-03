@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title> ٢٢وعد ليكي ي سوسو ♡</title>
+
+<style>
+:root {
+  --gold: #e8d2a0;
+  --cream: #fff8ed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE");
+  background-size: cover;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .86);
+}
+
+main {
+  width: min(92%, 720px);
+  margin: auto;
+  padding: 25px 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.logo {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.back {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.card {
+  padding: clamp(20px, 5vw, 35px);
+  border: 1px solid #e8d2a055;
+  border-radius: 24px;
+  background: #111d30e8;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px #0005;
+}
+
+.center {
+  text-align: center;
+}
+
+.symbol {
+  font-size: 48px;
+}
+
+h1 {
+  color: var(--gold);
+  font-size: clamp(27px, 6vw, 38px);
+  line-height: 1.7;
+}
+
+p {
+  color: #e2dcd2;
+  line-height: 2;
+}
+
+.intro {
+  margin-bottom: 24px;
+}
+
+.progress-wrap {
+  margin: 22px 0;
+  padding: 15px;
+  border: 1px solid #e8d2a033;
+  border-radius: 16px;
+  background: #ffffff08;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--gold);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 7px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff15;
+}
+
+#progressBar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #c3a568, #f5e7c5);
+  transition: width .3s;
+}
+
+.promises {
+  display: grid;
+  gap: 12px;
+}
+
+.promise {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px;
+  text-align: right;
+  color: var(--cream);
+  font: inherit;
+  border: 1px solid #e8d2a044;
+  border-radius: 17px;
+  background: #ffffff08;
+  cursor: pointer;
+  transition: transform .2s, background .2s, border-color .2s;
+}
+
+.promise:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  background: #e8d2a010;
+}
+
+.number {
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e8d2a077;
+  border-radius: 12px;
+  color: var(--gold);
+  font-size: 17px;
+}
+
+.promise-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.promise-title {
+  display: block;
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.promise-hint {
+  display: block;
+  color: #c7c2bc;
+  font-size: 13px;
+}
+
+.arrow {
+  color: var(--gold);
+  font-size: 21px;
+}
+
+.promise-detail {
+  margin-top: 12px;
+  padding: 18px;
+  border: 1px solid #e8d2a066;
+  border-radius: 15px;
+  background: #e8d2a00b;
+  animation: appear .25s ease;
+}
+
+.promise-detail p {
+  margin: 0;
+  color: var(--cream);
+  line-height: 2.1;
+  font-size: 16px;
+}
+
+.promise.open {
+  border-color: var(--gold);
+  background: #e8d2a014;
+}
+
+.promise.open .arrow {
+  transform: rotate(90deg);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 24px;
+  color: #172033;
+  background: linear-gradient(135deg, #f5e7c5, #d4b77b);
+  border: 0;
+  border-radius: 13px;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer {
+  padding: 24px 0;
+  color: #d5c9b4;
+  text-align: center;
+  font-size: 13px;
+  line-height: 2;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 420px) {
+  .promise {
+    padding: 13px;
+    gap: 10px;
+  }
+
+  .number {
+    width: 38px;
+    height: 38px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main>
+  <div class="top">
+    <span class="logo">♡ SOSO PROJECT</span>
+    <a class="back" href="index.html">← الرئيسية</a>
+  </div>
+
+  <section class="card center intro">
+    <div class="symbol">🤍</div>
+    <h1>22 وعد ليكي يا سوسو</h1>
+    <p>
+      مش مجرد كلام حلو...
+      دي وعود هحاول أثبتها ليكي بأفعال.
+      <br>
+      اختاري أي وعد واضغطي عليه عشان تقرايه ♡
+    </p>
+  </section>
+
+  <section class="progress-wrap">
+    <div class="progress-info">
+      <span>الوعود اللي فتحتيها</span>
+      <span id="progressText">0 من 22</span>
+    </div>
+    <div class="progress">
+      <div id="progressBar"></div>
+    </div>
+  </section>
+
+  <section class="promises" id="promises"></section>
+
+  <section class="card center" style="margin-top:24px">
+    <div class="symbol">💌</div>
+    <h2 style="color:#e8d2a0">وعد أخير ي عمري</h2>
+    <p>
+      اوعدك اني عمري عمري عمري متغير والله مهما حصل ومهما عملتي عشان انا حبيتك وغير ده كله انت عارفه اني مبعرفش اتغير مع حد واوعدك اني هفضل جنبك وسندك وامانك طول العمر ان شاء الله
+      <br>
+      إنتِ تستاهلي كل خير وكل ده كلههه بقي واقف ع موافقتك🤍
+    </p>
+    <a class="btn" href="index.html">الرجوع للرئيسية 🏠</a>
+  </section>
+
+  <footer class="footer">
+    من قلبي ليكي بجد ♡
+    <br>
+    22 وعد، وكل واحد فيهم بداية لحاجة أحسن.
+  </footer>
+</main>
+
+<script>
+const promiseList = [
+  "أوعدك إني م هتغييير والله ما هتغيررر.",
+  "أوعدك إني أبقي جنبك وسندك وامان ليكي طول العمر ان شاء الله.",
+  "أوعدك إني عمري ما هخذلك وهبقي قد ثققتك فيا ان شاء الله.",
+  "أوعدك إني متغيرش.",
+  "أوعدك إني أكون صريح معاكي وعمري ما اخبي حاجة.",
+  "أوعدك إني ما أديكيش وعود وأنا مش قدّها كل كلمه بحساب.",
+  "أوعدك إني أقدّر وجودك في حياتي ودا لوحده كفايه.",
+  "أوعدك إني أقولك لما أكون غلطان.",
+  "أوعدك إني أصالحك ف اي وقت سواء انت غلطانه او لا وانت اصلا مبتغلطيششش.",
+  "أوعدك إني أفتكر التفاصيل الصغيرة اللي بتفرحك.",
+  "أوعدك إني ف اي وقت وكل وقت هبقي جنبك.",
+  "أوعدك إني عمري محسسك انك تزعلي من عدم وجود حد ف حياتك زي صحابك وكده فاهمهه.",
+  "أوعدك إني أبقي حبيبك وصاحبك وجوزك وابوكي وامك واختك واخوكي وصحابك وكل حاجه محتجاها.",
+  "أوعدك إني أشجعك على الحاجات اللي بتحبيها.",
+  "أوعدك إني مزعلكيششش ابداا.",
+  "أوعدك إني اي حاجه تزعلي منها قادر اطلعك منها وافرحك والله باذن الله طبعا.",
+  "أوعدك إني مهما حصل مقفلش وازعل.",
+  "أوعدك إني متغيرششششش.",
+  "أوعدك إني احترم رايكك.",
+  "أوعدك إني أحاول اكون حد تحسي معاه بالامان م اي كلام.",
+  "أوعدك إني أحاول أخلي أفعالي قد كلامي.",
+  "أوعدك إني أفتكر إن كل يوم فرصة أكون فيه أحسن معاكي واني متغيرش.",
+];
+
+const container = document.getElementById("promises");
+const openedPromises = new Set();
+
+const numberArabic = number =>
+  number.toLocaleString("ar-EG");
+
+promiseList.forEach((promise, index) => {
+  const number = index + 1;
+
+  const item = document.createElement("div");
+  const button = document.createElement("button");
+
+  button.className = "promise";
+  button.type = "button";
+  button.setAttribute("aria-expanded", "false");
+
+  const numberBox = document.createElement("span");
+  numberBox.className = "number";
+  numberBox.textContent = numberArabic(number);
+
+  const info = document.createElement("span");
+  info.className = "promise-info";
+
+  const title = document.createElement("span");
+  title.className = "promise-title";
+  title.textContent = "وعد رقم " + numberArabic(number);
+
+  const hint = document.createElement("span");
+  hint.className = "promise-hint";
+  hint.textContent = "اضغطي هنا عشان تفتحي الوعد";
+
+  info.appendChild(title);
+  info.appendChild(hint);
+
+  const arrow = document.createElement("span");
+  arrow.className = "arrow";
+  arrow.textContent = "‹";
+
+  button.appendChild(numberBox);
+  button.appendChild(info);
+  button.appendChild(arrow);
+
+  const detail = document.createElement("div");
+  detail.className = "promise-detail hidden";
+
+  const message = document.createElement("p");
+  message.textContent = promise;
+  detail.appendChild(message);
+
+  button.addEventListener("click", () => {
+    const isOpening = detail.classList.contains("hidden");
+
+    detail.classList.toggle("hidden");
+    button.classList.toggle("open", isOpening);
+    button.setAttribute("aria-expanded", String(isOpening));
+
+    if (isOpening) {
+      openedPromises.add(number);
+      hint.textContent = "وعد اتقرا 🤍";
+    } else {
+      hint.textContent = "اضغطي هنا عشان تفتحي الوعد";
+    }
+
+    document.getElementById("progressText").textContent =
+      numberArabic(openedPromises.size) + " من " +
+      numberArabic(promiseList.length);
+
+    document.getElementById("progressBar").style.width =
+      (openedPromises.size / promiseList.length * 100) + "%";
+  });
+
+  item.appendChild(button);
+  item.appendChild(detail);
+  container.appendChild(item);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>المفاجأة لشختيي ♡</title>
+
+<style>
+:root {
+  --gold: #e8d2a0;
+  --cream: #fff8ed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE");
+  background-size: cover;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .83);
+}
+
+main {
+  width: min(92%, 650px);
+  margin: auto;
+  padding: 25px 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.logo {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.back {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.card {
+  padding: clamp(22px, 5vw, 40px);
+  border: 1px solid #e8d2a055;
+  border-radius: 26px;
+  background: #111d30e8;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px #0005;
+}
+
+.center {
+  text-align: center;
+}
+
+.symbol {
+  font-size: 55px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+h1 {
+  color: var(--gold);
+  font-size: clamp(27px, 6vw, 39px);
+  line-height: 1.7;
+}
+
+p {
+  color: #e2dcd2;
+  line-height: 2.2;
+  font-size: 17px;
+}
+
+.message {
+  margin: 25px 0;
+  padding: 22px 12px;
+  border: 1px solid #e8d2a055;
+  border-radius: 20px;
+  background: #e8d2a00a;
+}
+
+.message p {
+  margin: 8px 0;
+  color: var(--gold);
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: bold;
+  line-height: 2;
+}
+
+.small-message {
+  font-size: 16px;
+  color: #e2dcd2;
+  line-height: 2.2;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 14px 24px;
+  color: #172033;
+  background: linear-gradient(135deg, #f5e7c5, #d4b77b);
+  border: 0;
+  border-radius: 13px;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer {
+  padding: 22px 0;
+  color: #e2dcd2;
+  text-align: center;
+  font-size: 13px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main>
+  <div class="top">
+    <span class="logo">♡ SOSO PROJECT</span>
+    <a class="back" href="index.html">← الرئيسية</a>
+  </div>
+
+  <section class="card center" id="intro">
+    <div class="symbol">💌</div>
+
+    <h1>المفاجأة ليكي ي شختي 🤍</h1>
+
+    <p>
+      وصلتي لحد هنا، وده معناه إن فيه كلام
+      نفسي أقولهولك من قلبي.
+      <br>
+      المرة دي مفيش أسئلة ولا اي حاجه
+      فيه كلام ليكي انتِ وبس.
+    </p>
+
+    <button class="btn" onclick="openSurprise()">
+      افتحي المفاجأة ♡
+    </button>
+  </section>
+
+  <section class="card center hidden" id="surprise">
+    <div class="symbol">🌷</div>
+
+    <h1>انت نور عيني 🤍</h1>
+
+    <div class="message">
+      <p>أنا بحبك ي نور عيني بجد اويي</p>
+      <p>نفسي فيكي حرفيا</p>
+      <p> نفسي ف يوم تبقي حلالي♡</p>
+    </div>
+
+    <p>
+      أنا جيت اكتب وجوايا كلام كتير اوييي بس الوقت نسيت معتش عارف اقول ايه بس هوا انا ف العموم بحبك وبحبك م حب اللي هوا بحبك لا بحبك اللي هيا التانيه فهمانييي اللي هوا ي بت لا انا عايزك وعايزك بجد وم عايز غيرك خلاص هوا انت وبس هكتفي بيكي طول العمر يعني انت من الاخر كده م عايز اكلمك ولا اتسلي ولا ارتبط لا انا عايزك من هنا لاخر نفس فيا حرفيا بجد.
+      <br>
+     
+      
+    </p>
+
+    <p class="small-message">
+      وجودك غالي عندي، وابتسامتك بتفرق معايا،
+      والأهم عندي إنك تكوني مرتاحة ومقدّرة.
+      🤍
+    </p>
+
+    <button class="btn" onclick="showFinal()">
+      فيه كلمة أخيرة ليكي ♡
+    </button>
+
+    <div id="final" class="hidden">
+      <p style="margin-top:25px; color:#e8d2a0;">
+        اول مشوفتك قلبي اتحير قولت عزال ولا عجل صغير 😂❤
+        احلي عجل ي عم 😂🫂.
+        <br>
+        بحبك بجد ي أجمل حاجة حصلتلي 🤍
+      </p>
+
+      <a class="btn" href="index.html">
+        الرجوع للرئيسية 🏠
+      </a>
+    </div>
+  </section>
+
+  <footer>بحبك  ♡</footer>
+</main>
+
+<script>
+function openSurprise() {
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("surprise").classList.remove("hidden");
+}
+
+function showFinal() {
+  document.getElementById("final").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>

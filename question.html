@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>السؤال ♡</title>
+
+<style>
+:root {
+  --gold: #e8d2a0;
+  --cream: #fff8ed;
+  --muted: #d9d1c5;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+}
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE") center/cover no-repeat;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .86);
+}
+main {
+  width: min(92%, 650px);
+  margin: auto;
+  padding: 25px 0 40px;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+.logo { color: var(--gold); font-weight: bold; }
+.back { color: var(--gold); text-decoration: none; }
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+header .heart { font-size: 42px; }
+h1 {
+  color: var(--gold);
+  font-size: clamp(27px, 6vw, 40px);
+  margin: 12px 0;
+}
+header p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.question-card {
+  width: 100%;
+  min-height: 300px;
+  padding: 30px 20px;
+  border: 1px solid #e8d2a055;
+  border-radius: 28px;
+  background: #111d30e8;
+  box-shadow: 0 15px 40px #0003;
+  color: var(--cream);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.question-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  background: #18263be8;
+}
+.lock {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+.card-hint {
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1.9;
+}
+.card-small {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.answer {
+  display: none;
+  margin-top: 22px;
+  padding: 28px 22px;
+  border: 1px solid #e8d2a080;
+  border-radius: 25px;
+  background: #111d30e8;
+  text-align: center;
+  animation: appear .4s ease;
+}
+.answer.show { display: block; }
+.answer .emoji { font-size: 42px; }
+.answer h2 {
+  color: var(--gold);
+  font-size: 25px;
+  margin: 15px 0;
+}
+.answer p {
+  font-size: 20px;
+  line-height: 2;
+  margin: 0;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding-top: 30px;
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main>
+  <div class="top">
+    <span class="logo">♡ SOSO PROJECT</span>
+    <a class="back" href="index.html">← الرئيسية</a>
+  </div>
+
+  <header>
+    <div class="heart">💌</div>
+    <h1>السؤال</h1>
+    <p>فيه سؤال صغير مستخبي ليكي… افتحي الكارت وشوفيه ♡</p>
+  </header>
+
+  <button class="question-card" id="questionCard" type="button" onclick="revealAnswer()">
+    <div class="lock" id="lock">🔒</div>
+    <div class="card-hint" id="cardHint">اضغطي هنا عشان تفتحي الكارت</div>
+    <div class="card-small" id="cardSmall">سؤال من قلبي ليكي ♡</div>
+  </button>
+
+  <section class="answer" id="answer">
+    <div class="emoji">🥹🤍</div>
+    <h2>هل بعد ده كله حنيتي؟</h2>
+    <p>
+      إيه رأيك طيب تبقي نور طريقي؟<br>
+      ردي واتساب ي أوزعتيييييي ♡
+    </p>
+  </section>
+
+  <footer>مستني ردك يا نور عيني ♡</footer>
+</main>
+
+<script>
+function revealAnswer() {
+  document.getElementById("answer").classList.add("show");
+  document.getElementById("lock").textContent = "💖";
+  document.getElementById("cardHint").textContent = "الكارت اتفتح ♡";
+  document.getElementById("cardSmall").textContent = "السؤال ظهر تحت";
+  document.getElementById("questionCard").disabled = true;
+}
+</script>
+</body>
+</html>

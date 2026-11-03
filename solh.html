@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>حلمي معاك ♡</title>
+
+<style>
+:root {
+  --gold: #e8d2a0;
+  --cream: #fff8ed;
+  --muted: #d9d1c5;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+}
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE") center/cover no-repeat;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .86);
+}
+main {
+  width: min(92%, 750px);
+  margin: auto;
+  padding: 25px 0 40px;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.logo { color: var(--gold); font-weight: bold; }
+.back { color: var(--gold); text-decoration: none; }
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+header .heart { font-size: 45px; }
+h1 {
+  color: var(--gold);
+  font-size: clamp(27px, 6vw, 40px);
+  margin: 12px 0;
+}
+header p {
+  color: var(--muted);
+  line-height: 2;
+  margin: 0;
+}
+
+.dream-card {
+  width: 100%;
+  min-height: 280px;
+  padding: 30px 20px;
+  border: 1px solid #e8d2a055;
+  border-radius: 28px;
+  background: #111d30e8;
+  box-shadow: 0 15px 40px #0003;
+  color: var(--cream);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.dream-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  background: #18263be8;
+}
+.lock {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+.card-hint {
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1.9;
+}
+.card-small {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.dreams {
+  display: none;
+  margin-top: 22px;
+  padding: 25px 20px;
+  border: 1px solid #e8d2a080;
+  border-radius: 25px;
+  background: #111d30e8;
+  animation: appear .4s ease;
+}
+.dreams.show { display: block; }
+.dreams h2 {
+  color: var(--gold);
+  text-align: center;
+  font-size: 25px;
+  margin: 0 0 20px;
+}
+.dream-list {
+  display: grid;
+  gap: 12px;
+}
+.dream-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #e8d2a033;
+  border-radius: 16px;
+  background: #ffffff08;
+  line-height: 1.9;
+}
+.dream-item .icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.dream-item p {
+  margin: 0;
+}
+.closing {
+  color: var(--gold);
+  text-align: center;
+  line-height: 2;
+  margin: 22px 0 0;
+  font-size: 17px;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding-top: 30px;
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main>
+  <div class="top">
+    <span class="logo">♡ SOSO PROJECT</span>
+    <a class="back" href="index.html">← الرئيسية</a>
+  </div>
+
+  <header>
+    <div class="heart">🌙</div>
+    <h1>حلمي معاك</h1>
+    <p>فيه أحلام صغيرة مستخبية… افتحي الكارت واكتشفيها ♡</p>
+  </header>
+
+  <button class="dream-card" id="dreamCard" type="button" onclick="revealDreams()">
+    <div class="lock" id="lock">🔒</div>
+    <div class="card-hint" id="cardHint">اضغطي هنا عشان تفتحي الكارت</div>
+    <div class="card-small" id="cardSmall">أحلام نفسي أعيشها معاكي ♡</div>
+  </button>
+
+  <section class="dreams" id="dreams">
+    <h2>أحلامي معاكِ 🤍</h2>
+
+    <div class="dream-list">
+      <div class="dream-item">
+        <span class="icon">❣️</span>
+        <p>نتمشى سوا وامسك ايدك كده واحس انك بتاعتي ملكيي انا وبس.</p>
+      </div>
+
+      <div class="dream-item">
+        <span class="icon">😍</span>
+        <p>نفسي اقابلك ونتكلم كتير واحضنك جامممددددد كده االلي هوا خلاص حلمي بين ايدي اهه.</p>
+      </div>
+
+      <div class="dream-item">
+        <span class="icon">📸</span>
+        <p>نتصور سوا اللي هوا انا شايف قدام عيني حلمي اتحقق فاهممهه.</p>
+      </div>
+
+      <div class="dream-item">
+        <span class="icon">🎁</span>
+        <p>أجيبلك هدايا كتير وكل اللي بتحبيههه وابقي معاكي ف كل حاجة.</p>
+      </div>
+
+      <div class="dream-item">
+        <span class="icon">🌍</span>
+        <p>تحققي حلمك وتبقي دكتوره قد الدنيا واجي اخطب ونسافر بره مصررر يااه.</p>
+      </div>
+
+      <div class="dream-item">
+        <span class="icon">🤝</span>
+        <p>نفضل سند لبعض، ونشجع بعض على أحلامنا .</p>
+      </div>
+
+      <div class="dream-item">
+        <span class="icon">💌</span>
+        <p>نجيب عيال كتيرررر شبههك بس م بيض كده.</p>
+      </div>
+
+      <div class="dream-item">
+        <span class="icon">✨</span>
+        <p>من الاخر يعني حلمي ان ابقي معاكييي.</p>
+      </div>
+    </div>
+
+    <p class="closing">
+      وأجمل حلم عندي إنك توافقي ونبقي سوا سوا. ♡
+    </p>
+  </section>
+
+  <footer>كل حلم حلو بيبدأ بخطوة صغيرة ♡</footer>
+</main>
+
+<script>
+function revealDreams() {
+  document.getElementById("dreams").classList.add("show");
+  document.getElementById("lock").textContent = "🌙";
+  document.getElementById("cardHint").textContent = "الكارت اتفتح ♡";
+  document.getElementById("cardSmall").textContent = "أحلامنا مستنيانا";
+  document.getElementById("dreamCard").disabled = true;
+}
+</script>
+</body>
+</html>

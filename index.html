@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>حكايتنا ♡ | سوسو</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #101827;
+  color: #fff8ed;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE");
+  background-size: cover;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .82);
+}
+
+.wrap {
+  width: min(100% - 32px, 900px);
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 25px 0;
+}
+
+.logo {
+  color: #e8d2a0;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.tag {
+  color: #e5d9c2;
+  font-size: 13px;
+}
+
+.intro {
+  text-align: center;
+  padding: 30px 12px 25px;
+}
+
+.intro .symbol {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: clamp(30px, 6vw, 46px);
+  margin: 10px 0;
+}
+
+.intro p {
+  color: #e2dcd2;
+  line-height: 2;
+  font-size: 15px;
+}
+
+.counter {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 25px 18px;
+  text-align: center;
+  border: 1px solid #e8d2a066;
+  border-radius: 24px;
+  background: #111d30d9;
+  backdrop-filter: blur(12px);
+}
+
+.counter h2 {
+  color: #e8d2a0;
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+.counter p {
+  color: #e2dcd2;
+  margin: 0 0 18px;
+}
+
+.timer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  direction: rtl;
+}
+
+.time-box {
+  background: #ffffff0b;
+  border: 1px solid #e8d2a033;
+  border-radius: 14px;
+  padding: 14px 5px;
+}
+
+.time-box strong {
+  display: block;
+  color: #e8d2a0;
+  font-size: clamp(20px, 5vw, 30px);
+}
+
+.time-box span {
+  display: block;
+  color: #e2dcd2;
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: #fff8ed;
+  text-align: center;
+  padding: 26px 16px;
+  border: 1px solid #e8d2a04d;
+  border-radius: 23px;
+  background: #111d30c9;
+  backdrop-filter: blur(12px);
+  transition: .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #e8d2a0;
+  background: #1c2a40e8;
+}
+
+.emoji {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+
+.card h2 {
+  color: #e8d2a0;
+  font-size: 19px;
+  margin: 0 0 10px;
+}
+
+.card p {
+  color: #e2dcd2;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 0;
+}
+
+.back {
+  display: block;
+  width: fit-content;
+  margin: 28px auto 0;
+  color: #e8d2a0;
+  text-decoration: none;
+  padding: 12px 22px;
+  border: 1px solid #e8d2a066;
+  border-radius: 12px;
+}
+
+footer {
+  text-align: center;
+  color: #e5d9c2;
+  font-size: 13px;
+  padding: 25px 0;
+}
+
+@media (max-width: 480px) {
+  header { flex-direction: column; }
+  .cards { grid-template-columns: 1fr; }
+  .timer { gap: 6px; }
+  .time-box { padding: 12px 3px; }
+}
+</style>
+</head>
+
+<body>
+<div class="page-bg"></div>
+
+<div class="wrap">
+
+<header>
+  <div class="logo">♡SOSO PROJECT</div>
+  <div class="tag">كل حاجة على مهلك ✨</div>
+</header>
+
+<section class="intro">
+  <div class="symbol">🫂</div>
+  <h1>اختاري حكايتك يا عمري</h1>
+  <p>
+    كل باب وراه حاجة صغيرة معمولة ليكي.
+    اختاري اللي يعجبك، ومفيش ترتيب معين لازم تمشي عليه. 🤍
+  </p>
+</section>
+
+<section class="counter">
+  <h2>♡ من يوم ما عرفتك ♡</h2>
+  <p>كان يوم طين انا عارف</p>
+
+  <div class="timer">
+    <div class="time-box">
+      <strong id="days">0</strong>
+      <span>يوم</span>
+    </div>
+    <div class="time-box">
+      <strong id="hours">0</strong>
+      <span>ساعة</span>
+    </div>
+    <div class="time-box">
+      <strong id="minutes">0</strong>
+      <span>دقيقة</span>
+    </div>
+    <div class="time-box">
+      <strong id="seconds">0</strong>
+      <span>ثانية</span>
+    </div>
+  </div>
+</section>
+
+<section class="cards">
+
+  <a class="card" href="game.html">
+    <div class="emoji">🎮</div>
+    <h2>لعبة صغيرة</h2>
+    <p>شوية أسئلة، وفي الآخر فيه رسالة مستنياكي.</p>
+  </a>
+
+  <a class="card" href="gift.html">
+    <div class="emoji">🎁</div>
+    <h2>المفاجأة</h2>
+    <p>افتحي الهدية وشوفي إيه اللي مستخبي جواها.</p>
+  </a>
+
+  <a class="card" href="letter.html">
+    <div class="emoji">❣️</div>
+    <h2>كلام من القلب</h2>
+    <p>كلام كنت عايز أوصلهولك بطريقة مختلفة.</p>
+  </a>
+
+  <a class="card" href="quiet.html">
+    <div class="emoji">💌</div>
+    <h2>حاجات حبيتها فيكي</h2>
+    <p>حاجات حبيتها فيكي م حبيتك عشانها 😉</p>
+  </a>
+
+  <a class="card" href="music.html">
+    <div class="emoji">🤍</div>
+    <h2>وعود من القلب</h2>
+    <p>وعود بوعدك بيها وإن شاء الله أوفي بيها.</p>
+  </a>
+
+  <a class="card" href="settings.html">
+    <div class="emoji">📷</div>
+    <h2>ألبومك</h2>
+    <p>شوية صور كده ليكي.</p>
+  </a>
+
+  <a class="card" href="question.html">
+    <div class="emoji">💭</div>
+    <h2>سؤال ليكي</h2>
+    <p>سؤال لطيف عايز أعرف إجابته منك.</p>
+  </a>
+
+  <a class="card" href="dream.html">
+    <div class="emoji">🫱🏽‍🫲🏻</div>
+    <h2>قسم الصلح خير 😂</h2>
+    <p>لما ازعلك بعد الشر يعني هقولك افتحي الويب تيجي هنا 😂😉.</p>
+  </a>
+
+  <a class="card" href="solh.html">
+    <div class="emoji">🌙</div>
+    <h2>حلمي معاك</h2>
+    <p>هقولك نفسي فايه بجد معاك</p>
+  </a>
+
+</section>
+
+<footer>حكاية صغيرة، معمولة باهتمام ♡</footer>
+
+</div>
+
+<script>
+// تاريخ ثابت لبداية العداد: 27 أكتوبر 2024
+const startDate = new Date("2024-10-27T00:00:00");
+
+function updateTimer() {
+  const now = new Date();
+  let diff = now - startDate;
+
+  if (diff < 0) diff = 0;
+
+  const seconds = Math.floor(diff / 1000);
+  const days = Math.floor(seconds / 86400);
+  const hours = Math.floor((seconds % 86400) / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = remainingSeconds;
+}
+
+updateTimer();
+setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>

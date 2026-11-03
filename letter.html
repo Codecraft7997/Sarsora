@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كلام من القلب ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap');ط
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold: #f5d58b;
+  --light-gold: #fff1c7;
+  --bg: #090711;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  color: white;
+  background:
+    radial-gradient(ellipse at 50% 110%, #482047 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 10%, #211535 0%, transparent 45%),
+    var(--bg);
+  font-family: 'Cairo', sans-serif;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .22;
+  animation: float 12s ease-in-out infinite alternate;
+}
+
+.glow.one {
+  background: #a43b79;
+  top: -100px;
+  right: -100px;
+}
+
+.glow.two {
+  background: #b88b38;
+  bottom: -150px;
+  left: -80px;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(60px, -50px) scale(1.3); }
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  color: var(--gold);
+  opacity: 0;
+  animation: twinkle var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(.5); }
+  50% { opacity: .8; transform: scale(1.2); }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 22px 15px;
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(9,7,17,.92), transparent);
+}
+
+header h1 {
+  color: var(--gold);
+  font-size: clamp(21px, 5vw, 32px);
+  font-family: 'Amiri', serif;
+  text-shadow: 0 0 22px #e4ad5b55;
+}
+
+header p {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #c7b8d2;
+  margin-top: 2px;
+}
+
+main {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 115px 20px 35px;
+}
+
+.heart {
+  flex-shrink: 0;
+  font-size: 38px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 18px #ff679e88);
+  animation: heartbeat 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  12% { transform: scale(1.15); }
+  24% { transform: scale(1); }
+  36% { transform: scale(1.1); }
+}
+
+.story-window {
+  width: 100%;
+  max-width: 760px;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 85%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+.story {
+  width: 100%;
+  padding: 25px 5px 100px;
+  text-align: center;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+.paragraph {
+  color: #f8eefa;
+  font-family: 'Amiri', serif;
+  font-size: clamp(21px, 4.7vw, 30px);
+  line-height: 2.05;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 22px #d7a4ef22;
+  overflow-wrap: anywhere;
+}
+
+.paragraph.completed {
+  color: #e6d8eb;
+}
+
+.cursor {
+  display: inline-block;
+  color: var(--gold);
+  font-weight: bold;
+  animation: blink .7s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.end-message {
+  display: none;
+  padding: 35px 10px 70px;
+  text-align: center;
+  color: var(--gold);
+  font-family: 'Amiri', serif;
+  font-size: clamp(24px, 5vw, 34px);
+  animation: appear 2s ease forwards;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 10px 18px;
+  text-align: center;
+  color: #b9a7c4;
+  font-size: 11px;
+  letter-spacing: 1px;
+  background: linear-gradient(transparent, #090711 45%);
+  z-index: 4;
+}
+
+footer span {
+  color: var(--gold);
+}
+
+.back {
+  position: fixed;
+  top: 18px;
+  right: 15px;
+  z-index: 10;
+  color: #f5d58b;
+  text-decoration: none;
+  border: 1px solid #f5d58b44;
+  border-radius: 30px;
+  padding: 5px 13px;
+  font-size: 12px;
+  background: #100d1dcc;
+}
+
+@media (max-height: 650px) {
+  main { padding-top: 85px; }
+  .heart { font-size: 28px; margin-bottom: 2px; }
+  header { padding-top: 12px; }
+  .paragraph { margin-bottom: 20px; line-height: 1.8; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+</div>
+
+<div class="stars" id="stars"></div>
+
+<a class="back" href="index.html">← رجوع</a>
+
+<header>
+  <h1>كلام من القلب</h1>
+  <p❤️</p>
+</header>
+
+<main>
+  <div class="heart">❣️❣️❣️❣️❣️❣️❣️</div>
+
+  <div class="story-window" id="storyWindow">
+    <div class="story" id="story"></div>
+  </div>
+</main>
+
+<footer>
+  <span>لنور عينيي ❤️</span> — كل كلمة هنا من قلبي
+</footer>
+
+<script>
+/*
+  تقدر تغيّر الكلام من هنا لو حبيت.
+  كل فقرة بين علامتي التنصيص هتظهر لوحدها،
+  والفقرة اللي قبلها هتفضل موجودة.
+*/
+
+const paragraphs = [
+  "سوسو ❤️",
+
+  "عارفة؟ في كلام كتير جوايا ساعات ببقى م عارف ولا قادر اعبر عنه ولا أعرف أقوله إزاي.",
+
+  "بس فيه حاجة واحدة أنا متأكد منها… إن وجودك في حياتي فاارق معايا بطريقة يمكن الكلام ميعرفش يوصفها.",
+
+  "مش لازم كل يوم يكون حلو، ومش لازم نكون مبسوطين طول الوقت… عادي يعني هيا الدنيا كده بس لازم انا مسبكيش زعلانه ابدا من اي حاجة واخلي كل لحظه من وقتك جنة.",
+
+  "بس وسط كل ده، أتمنى تفضلي فاكرة إن فيه حد بيقدر زعلك وبيحبك وبيخاف عليكي اوييي وانه نفسه يشوفك احسن حد.",
+
+  "أنا مش عايز أكون مجرد شخص يقولك متزعليش وخلاص… أنا نفسي أكون حد يسمعك، ويفهمك، ويسيبلك مساحة تتكلمي وتعبري عن كل حاجة جواكي.",
+
+  "ولو اي يوم كان وحش، أتمنى اللحظة اللي بتقراي فيها كلامي ده تنسيكي اي زعل وان م يوم ولا سنه بقولك لاخر نفسسس.",
+
+  "وأنا مهما اتلخبطت في الكلام، هتفضل عندي رغبة إني أفهمك أكتر، وأتعلم إزاي أكون أحسن معاكي عشان ده واجبي عليكي وان اكون سند وضهر ليكي.",
+
+  "يمكن مش بعرف أكتب كلام حلو بس كل اللي بكتبه هنا طالع من جوايا والله العظيم.",
+
+  "ولو قدرت أخليكي تنسي لحظه واحده وحشه ف اي وقت لو كملنا سوا ان شاء الله يعني فده بالنسبالي حاجه حلوهه اويي اوي.",
+
+  "مش هقولك إن كل حاجه حلوه ولا الدنيا حلوه بس أتمنى الأيام الصعبة كمان تعرفي اني جبنك وسندك وم هسيبك .",
+
+  "خليكي ع طبيعتك ي عمري واللي بيحبك م هيسيبك ابدا.",
+  "حابب برضو اقولك اني بحبك وبحبك بجد م اي كلام ولا اي هبل من ده لان اللي بعمله معاكي لواحده كفيل يأكدلك ده انا بحبك من 737 يوم و5 ساعات بالظبط مفيش لحظه واحده قلبي نبض لواحده غيرك لانك انت اللي ف القلب والعقل والروح والله اتمني اتمني بقييي.",
+
+  "وفي آخر الكلام ده كله، فيه حاجة بسيطة نفسي توصلك… انتِ غالية عندي، ومشاعرك غالية، ووجودك له معنى كبير عندي.",
+
+  "بحبك ي عمري❤️",
+
+  "ودي مش نهاية الكلام… دي بس طريقة صغيرة أقولك بيها إن فيه كلام كتير حلو لسه جوايا ليكي."
+];
+
+const story = document.getElementById("story");
+const storyWindow = document.getElementById("storyWindow");
+
+let paragraphIndex = 0;
+let charIndex = 0;
+let currentParagraph = null;
+let currentText = null;
+let cursor = null;
+let timer = null;
+let finished = false;
+
+const typingSpeed = 75;
+const paragraphPause = 900;
+const scrollSpeed = 0.035;
+
+let targetScroll = 0;
+let currentScroll = 0;
+let lastFrame = 0;
+
+function createParagraph() {
+  currentParagraph = document.createElement("p");
+  currentParagraph.className = "paragraph";
+
+  currentText = document.createTextNode("");
+  cursor = document.createElement("span");
+  cursor.className = "cursor";
+  cursor.textContent = "▍";
+
+  currentParagraph.appendChild(currentText);
+  currentParagraph.appendChild(cursor);
+  story.appendChild(currentParagraph);
+}
+
+function updateScroll() {
+  const windowHeight = storyWindow.clientHeight;
+  const paragraphBottom = currentParagraph
+    ? currentParagraph.offsetTop + currentParagraph.offsetHeight
+    : story.scrollHeight;
+
+  const desired = Math.max(
+    0,
+    paragraphBottom - windowHeight * 0.68
+  );
+
+  targetScroll = desired;
+}
+
+function animateScroll(timestamp) {
+  if (!lastFrame) lastFrame = timestamp;
+
+  const delta = Math.min(timestamp - lastFrame, 40);
+  lastFrame = timestamp;
+
+  const distance = targetScroll - currentScroll;
+
+  if (Math.abs(distance) > 0.3) {
+    currentScroll += distance * Math.min(1, scrollSpeed * delta);
+    story.style.transform = `translateY(${-currentScroll}px)`;
+  } else {
+    currentScroll = targetScroll;
+    story.style.transform = `translateY(${-currentScroll}px)`;
+  }
+
+  requestAnimationFrame(animateScroll);
+}
+
+function typeNext() {
+  if (finished) return;
+
+  if (!currentParagraph) {
+    if (paragraphIndex >= paragraphs.length) {
+      showEnding();
+      return;
+    }
+
+    createParagraph();
+    charIndex = 0;
+  }
+
+  const text = paragraphs[paragraphIndex];
+
+  if (charIndex < text.length) {
+    currentText.textContent += text.charAt(charIndex);
+    charIndex++;
+
+    updateScroll();
+
+    // سرعة الكتابة تتغير قليلًا حسب علامات الترقيم
+    const lastChar = text.charAt(charIndex - 1);
+    let delay = typingSpeed;
+
+    if ("،؛:".includes(lastChar)) delay = 320;
+    if ("….".includes(lastChar)) delay = 500;
+
+    timer = setTimeout(typeNext, delay);
+  } else {
+    cursor.remove();
+    currentParagraph.classList.add("completed");
+
+    paragraphIndex++;
+    currentParagraph = null;
+    currentText = null;
+    cursor = null;
+    charIndex = 0;
+
+    updateScroll();
+
+    timer = setTimeout(typeNext, paragraphPause);
+  }
+}
+
+function showEnding() {
+  finished = true;
+
+  const ending = document.createElement("div");
+  ending.className = "end-message";
+  ending.textContent = "وكل الكلام الحلو لسه قليل عليكي يا سرسورتي ❤️";
+
+  story.appendChild(ending);
+  ending.style.display = "block";
+
+  targetScroll = Math.max(0, story.scrollHeight - storyWindow.clientHeight * 0.65);
+}
+
+function createStars() {
+  const container = document.getElementById("stars");
+
+  for (let i = 0; i < 45; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.textContent = Math.random() > 0.5 ? "✦" : "·";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.setProperty("--duration", (2 + Math.random() * 5) + "s");
+    star.style.setProperty("--delay", (Math.random() * 5) + "s");
+    star.style.fontSize = (8 + Math.random() * 12) + "px";
+
+    container.appendChild(star);
+  }
+}
+
+createStars();
+requestAnimationFrame(animateScroll);
+
+// يبدأ العرض تلقائيًا عند فتح الصفحة
+window.addEventListener("load", () => {
+  setTimeout(typeNext, 900);
+});
+</script>
+
+</body>
+</html>

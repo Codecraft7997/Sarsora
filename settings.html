@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1c">
+<title>ألبوم نونتي ♡</title>
+
+<style>
+:root {
+  --bg: #080d1c;
+  --card: #111a2d;
+  --gold: #e8c779;
+  --text: #fff9eb;
+  --muted: #aeb8cc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at top, #202746 0%, transparent 55%),
+    var(--bg);
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.top {
+  padding: 26px 16px 14px;
+  text-align: center;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 10px 18px;
+  border: 1px solid #e8c77966;
+  border-radius: 30px;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(29px, 7vw, 46px);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+h1 span {
+  color: var(--gold);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2;
+  max-width: 420px;
+  margin: 10px auto 18px;
+}
+
+.counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e8c77944;
+  background: #e8c7790d;
+  border-radius: 30px;
+  padding: 9px 15px;
+  color: var(--gold);
+  font-size: 13px;
+}
+
+.gallery {
+  width: min(100% - 24px, 1000px);
+  margin: 24px auto 45px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.photo-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 7px;
+  overflow: hidden;
+  border: 1px solid #e8c77940;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #17223a, #0d1425);
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  transition: transform .2s, border-color .2s;
+}
+
+.photo-card:active {
+  transform: scale(.97);
+}
+
+.photo-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 11px;
+  background: linear-gradient(145deg, #202b43, #0a1020);
+}
+
+.photo-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-card .placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #c6b47f;
+  background:
+    radial-gradient(circle at center, #27304a, #0c1323 75%);
+}
+
+.placeholder .heart {
+  font-size: 34px;
+  opacity: .85;
+}
+
+.placeholder small {
+  color: #aeb8cc;
+  font-size: 12px;
+}
+
+.photo-card .photo-label {
+  display: block;
+  padding: 11px 3px 5px;
+  font-size: 12px;
+  color: #f0dfb1;
+}
+
+.photo-card .num {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
+  background: #080d1cdd;
+  border: 1px solid #e8c77977;
+  color: var(--gold);
+  border-radius: 20px;
+  padding: 5px 9px;
+  font-size: 11px;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px 20px 35px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2.2;
+}
+
+.footer span {
+  color: var(--gold);
+}
+
+/* شاشة عرض الصور */
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  background: rgba(3, 6, 15, .97);
+}
+
+.viewer.active {
+  display: flex !important;
+}
+
+.viewer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  max-width: 850px;
+  margin-bottom: 10px;
+}
+
+.viewer-number {
+  color: var(--gold);
+  font-size: 14px;
+}
+
+.control {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid #e8c77970;
+  border-radius: 14px;
+  background: #17213a;
+  color: var(--gold);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.viewer-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#fullImage {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.viewer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  padding-top: 12px;
+}
+
+.nav-btn {
+  min-width: 100px;
+  font-size: 14px;
+}
+
+.hint {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #8792a9;
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+  }
+
+  .photo-card {
+    padding: 9px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+  <a class="back" href="index.html">← رجوع للمفاجأة</a>
+
+  <div class="eyebrow">A LITTLE PIECE OF MY HEART</div>
+
+  <h1>ألبوم <span>تحف</span> ♡</h1>
+
+  <p class="subtitle">
+    30 مكان صوره للقمر
+  </p>
+
+  <div class="counter">
+    <span>♡</span>
+    <span id="loadedCount">0 صورة مضافة</span>
+    <span>من 30</span>
+  </div>
+</header>
+
+<main>
+  <section class="gallery" id="gallery" aria-label="ألبوم الصور"></section>
+</main>
+
+<footer class="footer">
+  <span>كل صورة ليها ابداع ♡</span><br>
+  ولسه فيه حاجات كتيررر
+</footer>
+
+<!-- نافذة عرض الصور -->
+<div class="viewer" id="viewer" aria-hidden="true">
+
+  <div class="viewer-top">
+    <span class="viewer-number" id="viewerNumber">الصورة 1 من 30</span>
+    <button class="control close" id="closeBtn"
+      type="button" aria-label="إغلاق الصورة">×</button>
+  </div>
+
+  <div class="viewer-stage" id="viewerStage">
+    <img id="fullImage" src="" alt="صورة من ألبوم نونتي">
+  </div>
+
+  <div class="viewer-bottom">
+    <button class="control nav-btn" id="prevBtn" type="button">
+      → السابقة
+    </button>
+
+    <button class="control nav-btn" id="nextBtn" type="button">
+      التالية ←
+    </button>
+  </div>
+
+  <div class="hint">اضغط على × للإغلاق • استخدم الأسهم للتنقل</div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const gallery = document.getElementById("gallery");
+  const viewer = document.getElementById("viewer");
+  const fullImage = document.getElementById("fullImage");
+  const viewerNumber = document.getElementById("viewerNumber");
+  const loadedCount = document.getElementById("loadedCount");
+  const closeBtn = document.getElementById("closeBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const viewerStage = document.getElementById("viewerStage");
+
+  const photos = [];
+  let currentIndex = 0;
+  let touchStartX = 0;
+
+  // إنشاء 100 مكان للصورة تلقائيًا
+  for (let i = 1; i <= 30; i++) {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "photo-card";
+    card.setAttribute("aria-label", "فتح الصورة رقم " + i);
+
+    const number = document.createElement("span");
+    number.className = "num";
+    number.textContent = String(i).padStart(2, "0");
+
+    const wrap = document.createElement("div");
+    wrap.className = "photo-wrap";
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "placeholder";
+    placeholder.innerHTML =
+      '<span class="heart">♡</span>' +
+      '<small>مكان الصورة ' + i + '</small>';
+
+    const img = document.createElement("img");
+    img.alt = "صورة رقم " + i;
+    img.loading = "lazy";
+    img.decoding = "async";
+
+    const label = document.createElement("span");
+    label.className = "photo-label";
+    label.textContent = "صورة رقم " + i;
+
+    // الصور بجانب index.html في المجلد الرئيسي
+    img.src = i + ".jpg";
+
+    const photo = {
+      number: i,
+      img: img,
+      card: card,
+      loaded: false
+    };
+
+    photos.push(photo);
+
+    img.addEventListener("load", function () {
+      if (img.naturalWidth > 0) {
+        photo.loaded = true;
+        img.style.display = "block";
+        placeholder.style.display = "none";
+        loadedCount.textContent =
+          photos.filter(p => p.loaded).length + " صورة مضافة";
+      }
+    });
+
+    img.addEventListener("error", function () {
+      photo.loaded = false;
+      img.style.display = "none";
+      placeholder.style.display = "flex";
+      loadedCount.textContent =
+        photos.filter(p => p.loaded).length + " صورة مضافة";
+    });
+
+    wrap.appendChild(img);
+    wrap.appendChild(placeholder);
+    card.appendChild(number);
+    card.appendChild(wrap);
+    card.appendChild(label);
+    gallery.appendChild(card);
+
+    // الضغط على الصورة يفتحها بالحجم الكبير
+    card.addEventListener("click", function () {
+      if (!photo.loaded || !img.naturalWidth) {
+        return;
+      }
+
+      currentIndex = photos.indexOf(photo);
+      openViewer();
+    });
+  }
+
+  function openViewer() {
+    const photo = photos[currentIndex];
+
+    if (!photo || !photo.loaded || !photo.img.naturalWidth) {
+      return;
+    }
+
+    fullImage.src = photo.img.src;
+    fullImage.alt = "صورة رقم " + photo.number;
+    viewerNumber.textContent =
+      "الصورة " + photo.number + " من 30";
+
+    viewer.classList.add("active");
+    viewer.setAttribute("aria-hidden", "false");
+    document.body.classList.add("locked");
+  }
+
+  function closeViewer() {
+    viewer.classList.remove("active");
+    viewer.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("locked");
+    fullImage.src = "";
+  }
+
+  function showNext(direction) {
+    const available = [];
+
+    photos.forEach(function (photo, index) {
+      if (photo.loaded && photo.img.naturalWidth > 0) {
+        available.push(index);
+      }
+    });
+
+    if (available.length < 2) return;
+
+    let position = available.indexOf(currentIndex);
+    position = (position + direction + available.length) % available.length;
+    currentIndex = available[position];
+
+    openViewer();
+  }
+
+  closeBtn.addEventListener("click", closeViewer);
+
+  prevBtn.addEventListener("click", function () {
+    showNext(-1);
+  });
+
+  nextBtn.addEventListener("click", function () {
+    showNext(1);
+  });
+
+  // الضغط على الخلفية فقط يغلق الصورة
+  viewer.addEventListener("click", function (event) {
+    if (event.target === viewer) {
+      closeViewer();
+    }
+  });
+
+  // لوحة المفاتيح
+  document.addEventListener("keydown", function (event) {
+    if (!viewer.classList.contains("active")) return;
+
+    if (event.key === "Escape") closeViewer();
+    if (event.key === "ArrowRight") showNext(-1);
+    if (event.key === "ArrowLeft") showNext(1);
+  });
+
+  // السحب يمينًا ويسارًا على التابلت والموبايل
+  viewerStage.addEventListener("touchstart", function (event) {
+    if (event.touches.length) {
+      touchStartX = event.touches[0].clientX;
+    }
+  }, { passive: true });
+
+  viewerStage.addEventListener("touchend", function (event) {
+    if (!event.changedTouches.length) return;
+
+    const difference =
+      event.changedTouches[0].clientX - touchStartX;
+
+    if (Math.abs(difference) > 55) {
+      showNext(difference > 0 ? -1 : 1);
+    }
+  }, { passive: true });
+
+})();
+</script>
+
+</body>
+</html>

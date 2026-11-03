@@ -1,0 +1,224 @@
+
+<!DCCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>حكايتنا ♡ | سوسو</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #101827;
+  color: #fff8ed;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("PUT-YOUR-BACKGROUND-IMAGE-URL-HERE");
+  background-size: cover;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 16, 31, .78);
+}
+
+.wrap {
+  width: min(100% - 32px, 900px);
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 25px 0;
+}
+
+.logo {
+  color: #e8d2a0;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.tag {
+  color: #e5d9c2;
+  font-size: 13px;
+}
+
+.intro {
+  text-align: center;
+  padding: 35px 12px 25px;
+}
+
+.intro .symbol {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: clamp(30px, 6vw, 46px);
+  margin: 10px 0;
+}
+
+.intro p {
+  color: #e2dcd2;
+  line-height: 2;
+  font-size: 15px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: #fff8ed;
+  text-align: center;
+  padding: 26px 16px;
+  border: 1px solid #e8d2a04d;
+  border-radius: 23px;
+  background: #111d30c9;
+  backdrop-filter: blur(12px);
+  transition: .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #e8d2a0;
+  background: #1c2a40e8;
+}
+
+.emoji {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+
+.card h2 {
+  color: #e8d2a0;
+  font-size: 19px;
+  margin: 0 0 10px;
+}
+
+.card p {
+  color: #e2dcd2;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 0;
+}
+
+.back {
+  display: block;
+  width: fit-content;
+  margin: 28px auto 0;
+  color: #e8d2a0;
+  text-decoration: none;
+  padding: 12px 22px;
+  border: 1px solid #e8d2a066;
+  border-radius: 12px;
+}
+
+footer {
+  text-align: center;
+  color: #e5d9c2;
+  font-size: 13px;
+  padding: 25px 0;
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="page-bg"></div>
+
+<div class="wrap">
+
+<header>
+  <div class="logo">♡ NONTY PROJECT</div>
+  <div class="tag">كل حاجة على مهلك ✨</div>
+</header>
+
+<section class="intro">
+  <div class="symbol">🫂</div>
+  <h1>اختاري حكايتك ي عمريي</h1>
+  <p>
+    كل باب وراه حاجة صغيرة معمولة ليكي.
+    اختاري اللي يعجبك، ومفيش ترتيب معين لازم تمشي عليه. 🤍
+  </p>
+</section>
+
+<section class="cards">
+
+  <a class="card" href="game.html">
+    <div class="emoji">🎮</div>
+    <h2>لعبة صغيرة</h2>
+    <p>شوية أسئلة، وفي الآخر فيه رسالة مستنياكي.</p>
+  </a>
+
+  <a class="card" href="gift.html">
+    <div class="emoji">🎁</div>
+    <h2>المفاجأة</h2>
+    <p>افتحي الهدية وشوفي إيه اللي مستخبي جواها.</p>
+  </a>
+
+  <a class="card" href="letter.html">
+    <div class="emoji">❣️</div>
+    <h2>كلام من القلب</h2>
+    <p>كلام كنت عايز أوصلهولك بطريقة مختلفة.</p>
+  </a>
+
+  <a class="card" href="quiet.html">
+    <div class="emoji">💌</div>
+    <h2>جوابك بايدي</h2>
+    <p>حاجه بتحبيها😉.</p>
+  </a>
+
+  <a class="card" href="music.html">
+    <div class="emoji">🤍</div>
+    <h2>وعود من القلب</h2>
+    <p>كذا حاجه كده بوعدك بيهم وان شاء الله هوفييي بوعدي .</p>
+  </a>
+
+  <a class="card" href="settings.html">
+    <div class="emoji">📷</div>
+    <h2>البومك</h2>
+    <p>شويه صور كدا ليكي.</p>
+  </a>
+
+</section>
+
+<a class="back" href="index.html">← رجوع للصفحة الأولى</a>
+
+<footer>حكاية صغيرة، معمولة باهتمام ♡</footer>
+
+</div>
+</body>
+</html>
